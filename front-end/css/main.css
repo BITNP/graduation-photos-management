@@ -1,0 +1,74 @@
+
+    /* height: 100%;
+    background-size: 100%;
+    background-color: aliceblue;
+    background-repeat:no-repeat; */
+    /* background-image: linear-gradient(to bottom, rgba(127, 255, 197, 100%), whitesmoke 100%); */
+    /* background-blend-mode: color-dodge; */
+
+
+
+.imgbox
+{
+    /* position: relative; */
+    width: 85%;
+    height: fit-content;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    padding: 1.3%;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.photo
+{
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+.bg{
+    position:fixed;
+    float: left;
+    width: 100%;
+    background-position: center;
+    z-index: -1;
+    height: 100%;
+    background-size: cover;
+    /* background-color: aliceblue; */
+    /* background-repeat:no-repeat; */
+    /* background-image: linear-gradient(to bottom, rgba(127, 255, 197, 100%), whitesmoke 100%); */
+    background-image: url(../img/1.jpg);
+    filter: blur(3px);
+}
+.mynavbar
+{
+    background-color:rgba(240,224,235,255);
+    height: 50px;
+}
+.navlink
+{
+    height: 100%;
+}
+#logo
+{
+    height: 100%;
+    float: left;
+    margin-left: 8%;
+}
+#copyright
+{
+    float:bottom;
+    margin: 10px;
+    height: fit-content;
+    padding:2px;
+    font-size: x-small;
+    /* margin-bottom: 0; */
+    text-align: center;
+    color: rgb(178, 219, 115);
+    background-color:rgba(67, 67, 67, 0.619);
+    border-radius: 7px;
+    bottom: 0;
+
+}
