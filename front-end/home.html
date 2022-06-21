@@ -2,61 +2,74 @@
 <html lang="zh-CN">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>登录</title>
-  <!-- <link rel="stylesheet" href="./css/login.css" /> -->
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <link rel="stylesheet" href="./css/main.css">
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>首页</title>
+
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/home.css">
 
 </head>
 
 <body>
-  <div class="bg">
-  </div>
+	<div class="bg">
+	</div>
 
 
-  <div class="container-fluid mynavbar">
-    
-  <img id="logo" src="https://www.bit.edu.cn/images/gb20190805/logo_01.png" alt="">
-    <div class="container">
-      <ul class="nav justify-content-end pull-1">
-        <li class="nav-pills nav-fill">
-          <a class="nav-link active" href="#">首页</a>
-        </li>
-        <li class="nav-pills">
-          <a class="nav-link" href="#">上传</a>
-        </li>
-        <li class="nav-pills">
-          <a class="nav-link" href="#">下载</a>
-        </li>
-      </ul>
-    </div>
-  </div>
+	<div class="container-fluid mynavbar">
+		
+		<img id="logo" src="https://www.bit.edu.cn/images/gb20190805/logo_01.png" alt="">
 
-  <div>
-    <div class="imgbox">
-      <img class="photo" src="./img/2.png">
-    </div>
-    <div class="imgbox">
-      <img class="photo" src="./img/3.png">
-    </div>
+		<!-- 导航栏链接未指定，页面upload.html中也是 -->
+		<div class="container">
+			<ul class="nav justify-content-end pull-1">
+				<li class="nav-pills nav-fill">
+					<a class="nav-link active" href="#">首页</a>
+				</li>
+				<li class="nav-pills">
+					<a class="nav-link" href="#">上传</a>
+				</li>
+				<li class="nav-pills">
+					<a class="nav-link" href="#">下载</a>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+
+	<div>
+		<div class="imgbox">
+			<img class="photo" src="./img/2.png">
+		</div>
+		<div class="imgbox">
+			<img class="photo" src="./img/3.png">
+		</div>
+
+
+		<div class="imgbox">
+			<img class="photo" src="./img/1.jpg">
+		</div>
+
+
+		<!-- 取消注释添加图片，修改 src 值
     <div class="imgbox">
       <img class="photo" src="./img/1.jpg">
-    </div>
-  </div>
+    </div> 
+-->
 
-  <div class="container clearfix" >
-    <div class="row justify-content-center">
-      <p id="copyright">
-        Copyright © 2022 Net Pioneer Association of BIT All Rights Reserved.
-      </p>
-    </div>
-  </div>
+	</div>
 
-  <script src="./js/bootstrap.bundle.js"></script>
-  <script src="./js/jquery-3.6.0.min.js"></script>
+	<div class="container clearfix">
+		<div class="row justify-content-center">
+			<p id="copyright">
+				Copyright © 2022 Net Pioneer Association of BIT All Rights Reserved.
+			</p>
+		</div>
+	</div>
+
+	<script src="./js/bootstrap.bundle.js"></script>
+	<script src="./js/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>

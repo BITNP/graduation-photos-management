@@ -59,6 +59,7 @@
 }
 #copyright
 {
+    position: fixed;
     float:bottom;
     margin: 10px;
     height: fit-content;
