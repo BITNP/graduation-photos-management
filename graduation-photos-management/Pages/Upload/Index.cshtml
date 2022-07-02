@@ -1,0 +1,125 @@
+﻿@page
+@model GraduationPhotosManagement.Pages.Upload.IndexModel
+@{
+    ViewData["Title"] = "上传";
+}
+
+<h3>上传班级毕业照</h3>
+<p>可以上传你保存的班级毕业照，最多上传两张照片。</p>
+
+<p>上传完成后，请填写照片对应的描述，说明照片对应的年级和班级情况，以便工作人员进行处理。未填写描述的照片将无法处理和展示。</p>
+
+<p>现在已经上传了 @Model.UploadedPhoto.Count 张照片</p>
+<hr />
+@if (Model.UploadedPhoto.Count != 0)
+{
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>描述</th>
+                <th>上传时间</th>
+                <th>文件名</th>
+                <th>文件大小</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model.UploadedPhoto) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UploadTime.ToLocalTime())
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserFileName )
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileSize) 字节
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">编辑</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">删除</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>
+}
+
+@if (Model.UploadedPhoto.Count < 2)
+{
+    <div style="text-align:center;">
+        <form id="uploadForm" action="FileUpload/UploadLargeFile" method="post" 
+        enctype="multipart/form-data" onsubmit="AJAXSubmit(this);return false;" style="max-width:500px; margin:0 auto;">
+            <div class="item" style="margin-top: 5px">
+                <label for="file">选择毕业照文件</label>
+                <input id="file" type="file" name="imagefile" accept=".jpg,.png,.jpeg" class="form-control">
+            </div>
+            <input id="submit" class="btn btn-default btn-primary" type="submit" value="上传" style="margin-top:15px" />
+            <div style="margin-top:15px">
+                <output form="uploadForm" name="result"></output>
+            </div>
+        </form>
+    </div>
+
+}
+else
+{
+    <p>上传数已经达到上限。</p>
+    <p>若要继续上传，请删除已经上传的照片。</p>
+}
+
+
+@section Scripts {
+  <script>
+    "use strict";
+    $(document).ready(
+    function(){
+        if($('input:submit').length == 0)
+            return;
+        $('input:submit').attr('disabled',true);
+        $('input:file').change(
+            function(){
+                if ($(this).val()){
+                    $('input:submit').removeAttr('disabled'); 
+                }
+                else {
+                    $('input:submit').attr('disabled',true);
+                }
+            });
+    });
+    async function AJAXSubmit (oFormElement) {
+    oFormElement.elements.namedItem("result").value = '正在上传，请稍候......';
+      const formData = new FormData(oFormElement);
+      try {
+        const response = await fetch(oFormElement.action, {
+          method: 'POST',
+          headers: {
+            'RequestVerificationToken': getCookie('RequestVerificationToken')
+          },
+          body: formData
+        });
+        if(response.status == 200) {
+            oFormElement.elements.namedItem("result").value = '上传成功';
+            location.reload();
+        } else {
+            oFormElement.elements.namedItem("result").value = 
+                '上传失败：' + response.status + " " + response.statusText + " " + response.body;
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        oFormElement.elements.namedItem("result").value = 
+            '上传失败：' + response.status + " " + response.statusText + " " + response.body;
+      }
+    }
+    function getCookie(name) {
+      var value = "; " + document.cookie;
+      var parts = value.split("; " + name + "=");
+      if (parts.length == 2) return parts.pop().split(";").shift();
+    }
+  </script>
+}

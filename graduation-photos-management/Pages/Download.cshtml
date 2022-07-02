@@ -1,0 +1,53 @@
+﻿@page
+@model GraduationPhotosManagement.Pages.DownloadModel
+@{
+    ViewData["Title"] = "下载";
+}
+
+<h3>
+@if (Model.PageData.Photos.Count == 0)
+{
+    <div>抱歉，系统尚未查找到你的毕业照信息，请稍一段时间后再查询是否有毕业照录入</div>
+}
+else
+{
+    <div>系统查询到如下毕业照片</div>
+}
+</h3>
+
+<p>
+    如果你有本班的毕业照，没有在本系统中列出，你可以上传照片到本系统，待工作人员处理完毕后可供本班同学下载。
+</p>
+<p>
+    <a class="text-dark" asp-area="" asp-page="/Upload/Index">点击开始上传</a>
+</p>
+@if (Model.PageData.Photos.Count != 0)
+{
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>班级</th>
+                <th>描述</th>
+                <th>缩略图</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+@foreach (var photo in @Model.PageData.Photos)
+{
+            <tr>
+                <td>@photo.ClassName</td>
+                <td>@photo.Description</td>
+                <td style="max-width=400px"><img src="@photo.ThumbnailPath" style="height: auto; width: auto; width:100%;"></td>
+                <td>
+                 <a download="@($"{photo.ClassName}-{Model.PageData.StudentName}.jpg")" href="@photo.StoragePath">
+                    <button class="btn btn-default btn-primary">下载</button>
+                </a>
+                </td>
+            </tr>
+}
+        </tbody>
+    </table>
+</div>
+}

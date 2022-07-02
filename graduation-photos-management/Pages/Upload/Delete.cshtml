@@ -1,0 +1,37 @@
+﻿@page
+@model GraduationPhotosManagement.Pages.Upload.DeleteModel
+
+@{
+    ViewData["Title"] = "删除上传的照片";
+}
+
+<h3>你确定要删除这张照片吗？</h3>
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            描述
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UploadedPhoto.Description)
+        </dd>
+        <dt class="col-sm-2">
+            上传时间
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UploadedPhoto.UploadTime)
+        </dd>
+        <dt class="col-sm-2">
+            文件名
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UploadedPhoto.UserFileName)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" name="id" value="@Model.UploadedPhoto.Id" />
+        <input type="submit" value="删除" class="btn btn-danger" /> |
+        <a asp-page="./Index">返回</a>
+    </form>
+</div>

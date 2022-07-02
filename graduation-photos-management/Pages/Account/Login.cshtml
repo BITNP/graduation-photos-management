@@ -1,0 +1,56 @@
+@page
+@model LoginModel
+@{
+    ViewData["Title"] = "登录";
+    Layout = "_LoginLayout";
+}
+
+<div class="login-container" id="login-container">
+    <h1 class="login-title">北京理工大学<br />毕业照查询</h1>
+    <form method="post" style="text-align: left;">
+        <div class="item" style="margin-top: 5px">
+            <label asp-for="Input.FullName"></label>
+            <input asp-for="Input.FullName" class="form-control">
+        </div>
+        <div class="item" style="margin-top: 5px">
+            <label asp-for="Input.Password"></label>
+            <input asp-for="Input.Password" class="form-control">
+        </div>
+        <div class="item" style="margin-top: 5px">
+            <label asp-for="Input.Captcha"></label>
+            <input asp-for="Input.Captcha" class="form-control">
+        </div>
+        <div class="item" style="margin-top: 15px">
+            <img src="/Account/Captcha"/>
+        </div>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group" style="text-align: center;">
+            <button type="submit" class="btn btn-default btn-primary">登录</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    window.onload = function(){
+        if (isWeiXin()) {
+            var p = document.getElementById('login-container');
+            p.innerHTML = "<h4>手机微信无法下载文件<br>请点击右上角菜单，复制链接并到手机浏览器打开本网站</h4>";
+        }
+    }
+    function isWeiXin() {
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.indexOf("micromessenger") !== -1 ){
+            if(ua.indexOf("windowswechat") !== -1) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+</script>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
